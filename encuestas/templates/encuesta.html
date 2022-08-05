@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load rest_framework %}
+{% load static %}
+
+<style type="text/css">
+    .boton_1{
+        border: none; /* Remove borders */
+        color: white; /* Add a text color */
+        padding: 14px 28px; /* Add some padding */
+        cursor: pointer; /* Add a pointer cursor on mouse-over */
+        background-color: #2196F3;
+        background: #0b7dda;
+    }
+    .li_1{
+        color: #2196F3;
+    }
+</style>
+<form action="{% url 'encuestas:encuesta-create'%}" method="POST">
+    {% csrf_token %}
+    <h1>Encuesta</h1>
+    {% render_form serializer %}
+
+        <ul>
+            <label>*Por favor dinos cual es el tiempo promedio por día que la pasas en las siguientes redes sociales.
+            </label>
+            <label>*Por favor selecciona solamente una red social favorita.
+            </label>
+            {% for red in redes %}
+            <li class="li_1">{{ red.descripcion }}</li>
+            <input type="hidden" value={{ red.id }} id="redSocialId", name="redSocialId">
+            <label>Tiempo</label>
+            <input type="text" value="00:00" pattern="[0-9]{2}:[0-9]{2}" id="tiempo" name="tiempo">
+            <label>Favorita</label>
+            <input type="checkbox" value={{ red.id }} id="isFavorita" name="isFavorita"> 
+            {% endfor %}
+        </ul>
+    <input type="submit" value="Save" class="boton_1">
+</form>
+
+
+{% endblock %}

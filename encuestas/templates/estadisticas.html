@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+    {% block content %}
+    <h1>Estadísticas</h1>
+    <ul>
+        {% csrf_token %}
+        <label>No. Encuestas: {{ content.encuesta }}</label>
+        <br>
+        <label>Red Social Favorita: {{ content.favorita }}</label>
+        <br>
+        <label>Red Social Menos Favorita: {{ content.noFavorita }}</label>
+            {% for r in content.redes %}
+            <br>
+            <br>
+                <label>{{ r.redSocial }}</label>
+                <br>
+                <label>Promedio de tiempo:{{ r.promedio }}</label>
+                <br>
+                <label>Rango de edad que la prefiere:{{ r.rangoFavorito }}</label>
+            {% endfor %}
+        
+    
+    </ul>
+    {% endblock %}
+
+    
