@@ -4,7 +4,7 @@
 
 
 ```
-$ git clone https://github.com/HirivMur/pruebaemqu.git
+$ git clone https://github.com/HirivMur/prueba_emqu.git
 
 ```
 ## Requerimientos
